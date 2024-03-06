@@ -50,11 +50,20 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 ## Installation
 
+ - npm @apollo/client
+ - npm i graphql
+ - npm i apollo-server-express
+ - npm install
 
+## Deployment
+
+Render Link: https://book-search-zh81.onrender.com/
 
 ## Credits
 
 The starter code for the server and client folders were used from a repository named "solid-broccoli" located in their Develop folder, which can be accessed through the following link: https://github.com/coding-boot-camp/solid-broccoli.git
+
+I recieved assistance through AskBCS on deploying the application
 
 ## License
 
