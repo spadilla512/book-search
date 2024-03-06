@@ -1,10 +1,9 @@
 import { gql } from "@apollo/client";
 
-export const GET_ME = gql`
-    query Me {
-        me {
+export const QUERY_GET_ME = gql`
+    query me ($_id: ID!) {
+        me(userId: $_id){
             _id
-            bookCount
             email
             savedBooks {
                 authors
