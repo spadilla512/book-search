@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Container,
   Card,
@@ -11,12 +10,19 @@ import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 import { useMutation, useQuery } from '@apollo/client';
 import { REMOVE_BOOK } from '../utils/mutations';
-import { GET_ME } from '../utils/queries';
+import { QUERY_GET_ME } from '../utils/queries';
 
 const SavedBooks = () => {
-  const userData = data?.me
-  const { loading, data } = useQuery(GET_ME);
-  const [removeBook] = useMutation(REMOVE_BOOK);
+  const token = Auth.getToken()
+  const user = Auth.getProfile(token)
+  const { loading, data } = useQuery(QUERY_GET_ME, {
+    variables: {_id: user.data._id}
+  })
+  const [removeBook, {error}] = useMutation(REMOVE_BOOK);
+  //save user's info to a constant. If there is no data then return an empty object
+  const userData = data?.me || {};
+  //define a length based on data a user has
+  const userDataLength = Object.keys(userData).length;
 
   const handleDeleteBook = async (bookId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -26,24 +32,24 @@ const SavedBooks = () => {
         }
 
         try {
-          const response = await removeBookId({
+          const {data} = await removeBook({
             variables: {
+              userId: userData._id,
               bookId: bookId
             },
           });
         
-          if (!response) {
-            throw new Error('something went wrong!');
-          }
-        
         removeBookId(bookId);
+        //reload window to update view
+        window.location.reload();
+        //display error if try fails
       } catch (err) {
-        console.error(err);
+          console.error(err);
       }
     };
 
   // if data isn't here yet, say so
-  if (loading) {
+  if (!userDataLength) {
     return <h2>LOADING...</h2>;
   }
 
