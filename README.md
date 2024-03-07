@@ -53,7 +53,30 @@ THEN I am logged out of the site and presented with a menu with the options Sear
  - npm @apollo/client
  - npm i graphql
  - npm i apollo-server-express
+ - npm i @apollo/server
  - npm install
+
+## Images
+
+### Home Page
+
+![Alt text](assets/images/home-page.png)
+
+### Login
+
+![Alt text](assets/images/login.png)
+
+### Sign Up
+
+![Alt text](assets/images/signup.png)
+
+### Book Search
+
+![Alt text](assets/images/book-search.png)
+
+### Books Saved
+
+![Alt text](assets/images/saved-books.png)
 
 ## Deployment
 
@@ -63,7 +86,7 @@ Render Link: https://book-search-zh81.onrender.com/
 
 The starter code for the server and client folders were used from a repository named "solid-broccoli" located in their Develop folder, which can be accessed through the following link: https://github.com/coding-boot-camp/solid-broccoli.git
 
-I recieved assistance through AskBCS on deploying the application
+I recieved assistance through AskBCS on fixing the signup page and deploying the application.
 
 ## License
 
